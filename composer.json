@@ -9,7 +9,11 @@
         }
     ],
     "require": {
-        "doctrine/inflector": "^2.0"
+        "doctrine/inflector": "^2.0",
+
+        "symfony/translation": "5.0.*",
+        "carbonphp/carbon-doctrine-types": "1.*",
+        "nesbot/carbon": "2.*"
     },
     "autoload": {
         "psr-4": {
