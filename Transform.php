@@ -92,13 +92,17 @@ class Transform
         }
 
         if (is_string($value)) {
-            if (! strlen($value)) {
-                return [];
+            $array = json_decode($value, true);
+            if (json_last_error() === JSON_ERROR_NONE) {
+				if (is_array($array)) {
+					return $array;
+				}
+
+				$value = $array;
             }
 
-            $array = json_decode($value, true);
-            if (json_last_error() === JSON_ERROR_NONE && is_array($array)) {
-                return $array;
+            if (! strlen($value)) {
+                return [];
             }
         }
 
