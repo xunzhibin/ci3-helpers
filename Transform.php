@@ -46,8 +46,11 @@ class Transform
      */
     public static function toJson($value): string
     {
+        // 进行 JSON 编码
 		$json = json_encode($value);
-        if ($json === false) {
+
+        // JSON 编码时发生错误
+		if (json_last_error() !== JSON_ERROR_NONE) {
 			throw new RuntimeException(
 				"Unable to encode to JSON: " . json_last_error_msg()
 			);
