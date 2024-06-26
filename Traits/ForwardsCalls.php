@@ -8,7 +8,7 @@ use BadMethodCallException;
 use Error;
 
 /**
- * 转接呼叫
+ * 调用转发
  */
 trait ForwardsCalls
 {
