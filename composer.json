@@ -16,6 +16,9 @@
         "nesbot/carbon": "2.*"
     },
     "autoload": {
+        "files": [
+            "Common.php"
+        ],
         "psr-4": {
             "Xzb\\Ci3\\Helpers\\": ""
         }
