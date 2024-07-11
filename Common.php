@@ -51,9 +51,9 @@ if (! function_exists('replace_dir_separator')) {
      * @param string $path
      * @return string
      */
-    function replace_dir_separator(string $path): string
+    function replace_dir_separator(string $path, string $separator = DIRECTORY_SEPARATOR): string
     {
-		return preg_replace('/[\/\\\\]+/', DIRECTORY_SEPARATOR, $path);
+		return preg_replace('/[\/\\\\]+/', $separator, $path);
     }
 }
 
