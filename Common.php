@@ -43,17 +43,3 @@ if (! function_exists('class_traits')) {
 }
 
 // ------------------------------------------------------------------------
-
-if (! function_exists('replace_dir_separator')) {
-    /**
-     * 替换 目录分隔符
-     * 
-     * @param string $path
-     * @return string
-     */
-    function replace_dir_separator(string $path, string $separator = DIRECTORY_SEPARATOR): string
-    {
-		return preg_replace('/[\/\\\\]+/', $separator, $path);
-    }
-}
-

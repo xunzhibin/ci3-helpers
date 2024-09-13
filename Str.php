@@ -39,7 +39,7 @@ class Str
 	 * @param  string  $value
 	 * @return string
 	 */
-	public static function plural(string $value)
+	public static function plural(string $value): string
 	{
 		// 创建 新实例
 		return InflectorFactory::create()->build()
@@ -53,7 +53,7 @@ class Str
 	 * @param  string  $value
 	 * @return string
 	 */
-	public static function singular(string $value)
+	public static function singular(string $value): string
 	{
 		// 创建 新实例
 		return InflectorFactory::create()->build()
@@ -68,7 +68,7 @@ class Str
 	 * @param  string  $delimiter
 	 * @return string
 	 */
-	public static function snake(string $value, string $delimiter = '_')
+	public static function snake(string $value, string $delimiter = '_'): string
 	{
 		$key = $value;
 
@@ -98,7 +98,7 @@ class Str
 	 * @param string $value
 	 * @return string
 	 */
-	public static function upperCamel(string $value)
+	public static function upperCamel(string $value): string
 	{
 		$key = $value;
 
@@ -124,7 +124,7 @@ class Str
 	 * @param string $value
 	 * @return string
 	 */
-	public static function lowerCamel(string $value)
+	public static function lowerCamel(string $value): string
 	{
 	    $key = $value;
 
@@ -140,6 +140,81 @@ class Str
 
 		// 缓存 并 返回
 	    return static::$lowerCamelCache[$key] = $value;
+	}
+
+	/**
+	 * 是否 以指定 子字符串 结尾
+	 * 
+	 * @param string $string
+	 * @param string|string[] $substrings
+	 * @return bool
+	 */
+	public static function endsWith(string $string, $substrings): bool
+	{
+		foreach ((array)$substrings as $substring) {
+			if (substr($string, -strlen($substring)) === (string) $substring) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	/**
+	 * 替换 最后一个 指定 子字符串
+	 * 
+	 * @param string $string
+	 * @param string $search
+	 * @param string $replace
+	 * @return string
+	 */
+	public static function replaceLast(string $string, string $search, string $replace): string
+	{
+		if ($search) {
+			$position = strrpos($string, $search);
+
+			if ($position !== false) {
+				return substr_replace($string, $replace, $position, strlen($search));
+			}
+		}
+
+		return $string;
+	}
+
+	/**
+	 * 是否 包含指定 子字符串
+	 * 
+	 * @param string $string
+	 * @param string|string[] $substrings
+	 * @return bool
+	 */
+	public static function contains(string $string, $substrings): bool
+	{
+		foreach ((array)$substrings as $substring) {
+			if ($substring !== '' && mb_strpos($string, $substring) !== false) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	/**
+	 * 是否 以指定 子字符串 开头
+	 * 
+	 * @param string $string
+	 * @param string|string[] $substrings
+	 * @return bool
+	 */
+	public static function startsWith(string $string, $substrings): bool
+	{
+		foreach ((array)$substrings as $substring) {
+			if ($substring !== '' && substr($string, 0, strlen($substring)) === (string)$substring) {
+				return true;
+			}
+		}
+
+		return false;
 	}
 
 }
